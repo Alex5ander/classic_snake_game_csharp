@@ -18,8 +18,6 @@ namespace CLASSIC_SNAKE_GAME
         Graphics g;
         Graphics b;
 
-        Color grass1 = Color.FromArgb(88, 216, 84);
-        Color grass2 = Color.FromArgb(0, 184, 0);
         Color text = Color.FromArgb(252, 252, 252);
         Color brick = Color.FromArgb(64, 88, 100);
 
