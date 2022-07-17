@@ -56,9 +56,7 @@ namespace CLASSIC_SNAKE_GAME
 
         public bool collideBounds()
         {
-            int nx = x + this.dir[0];
-            int ny = y + this.dir[1];
-            return nx == 0 || nx == 31 || ny == 0 || ny == 29;
+            return x == 0 || x == 31 || y == 0 || y == 29;
         }
     }
 }
