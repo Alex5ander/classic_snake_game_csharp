@@ -31,44 +31,34 @@ namespace CLASSIC_SNAKE_GAME
 
         public void draw(Graphics g)
         {
-            int bx = this.x;
-            int by = this.y;
-
-            for (int i = 0; i < tails.Length; i++)
+            x += dir[0];
+            y += dir[1];
+            int bx = x;
+            int by = y;
+            int i = 0;
+            while (tails[i] != null)
             {
-                if(tails[i] != null)
-                {
-                    int tx = tails[i][0];
-                    int ty = tails[i][1];
+                int tx = tails[i][0];
+                int ty = tails[i][1];
 
-                    tails[i][0] = bx;
-                    tails[i][1] = by;
+                tails[i][0] = bx;
+                tails[i][1] = by;
 
-                    bx = tx;
-                    by = ty;
+                bx = tx;
+                by = ty;
 
-                    g.FillRectangle(brush, tails[i][0] * 8, tails[i][1] * 8, 8, 8);
-                    g.DrawRectangle(pen, tails[i][0] * 8, tails[i][1] * 8, 8, 8);
-                }
+                g.FillRectangle(brush, tails[i][0] * 8, tails[i][1] * 8, 8, 8);
+                g.DrawRectangle(pen, tails[i][0] * 8, tails[i][1] * 8, 8, 8);
+                i++;
             }
 
         }
 
-        public bool move()
+        public bool collideBounds()
         {
-            int nx = this.x + this.dir[0];
-            int ny = this.y + this.dir[1];
-
-            if ( nx < 1 || nx > 30 || ny < 1 || ny > 28)
-            {
-                return false;
-            }else
-            {
-                this.x = nx;
-                this.y = ny;
-            }
-
-            return true;
+            int nx = x + this.dir[0];
+            int ny = y + this.dir[1];
+            return nx == 0 || nx == 31 || ny == 0 || ny == 29;
         }
     }
 }

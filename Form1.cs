@@ -54,8 +54,7 @@ namespace CLASSIC_SNAKE_GAME
         private void draw()
         {
             b.Clear(Color.FromArgb(8, 8, 8));
-           
-
+          
             if (fruit.checkCollision(snake.x, snake.y))
             {
                 fruit = new Fruit();
@@ -77,13 +76,8 @@ namespace CLASSIC_SNAKE_GAME
 
                 }
             }
-
             snake.draw(b);
-            fruit.draw(b);
-            brush.Color = text;
-            b.DrawString("Score: " + score.ToString(), this.Font, brush, 16, 16);
-
-            if (!snake.move())
+            if (snake.collideBounds())
             {
                 state = 2;
                 brush.Color = Color.FromArgb(168, 16, 0);
@@ -91,6 +85,10 @@ namespace CLASSIC_SNAKE_GAME
                 brush.Color = text;
                 b.DrawString("Press Space to restart", this.Font, brush, 9 * 8, 14 * 8);
             }
+            fruit.draw(b);
+            brush.Color = text;
+            b.DrawString("Score: " + score.ToString(), this.Font, brush, 16, 16);
+
             g.DrawImage(buffer, 0, 0);
         }
 
