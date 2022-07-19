@@ -54,8 +54,17 @@ namespace CLASSIC_SNAKE_GAME
 
         }
 
-        public bool collideBounds()
+        public bool collide()
         {
+            int i = 1;
+            while(tails[i] != null)
+            {
+                if(tails[i][0] == x && tails[i][1] == y)
+                {
+                    return true;
+                }
+                i++;
+            }
             return x == 0 || x == 31 || y == 0 || y == 29;
         }
     }

@@ -25,6 +25,7 @@ namespace CLASSIC_SNAKE_GAME
         Pen pen = new Pen(Color.FromArgb(252, 252, 252));
         Image buffer;
         byte state = 0;
+        Keys key;
         public Form1()
         {
             InitializeComponent();
@@ -53,6 +54,36 @@ namespace CLASSIC_SNAKE_GAME
 
         private void draw()
         {
+            if (key == Keys.Space && state == 2)
+            {
+                initGame();
+            }
+
+            if (snake.dir[0] != 0)
+            {
+                if (key == Keys.Up)
+                {
+                    snake.dir = new int[2] { 0, -1 };
+                }
+                else if (key == Keys.Down)
+                {
+                    snake.dir = new int[2] { 0, 1 };
+                }
+            }
+            else if (snake.dir[1] != 0)
+            {
+                if (key == Keys.Left)
+                {
+                    snake.dir = new int[2] { -1, 0 };
+                }
+                else if (key == Keys.Right)
+                {
+                    snake.dir = new int[2] { 1, 0 };
+                }
+            }
+
+            key = Keys.T;
+
             b.Clear(Color.FromArgb(8, 8, 8));
           
             if (fruit.checkCollision(snake.x, snake.y))
@@ -77,7 +108,7 @@ namespace CLASSIC_SNAKE_GAME
                 }
             }
             snake.draw(b);
-            if (snake.collideBounds())
+            if (snake.collide())
             {
                 state = 2;
                 brush.Color = Color.FromArgb(168, 16, 0);
@@ -94,32 +125,7 @@ namespace CLASSIC_SNAKE_GAME
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space && state == 2)
-            {
-                initGame();
-            }
-
-            if(snake.dir[0] != 0)
-            {
-                if (e.KeyCode == Keys.Up)
-                {
-                    snake.dir = new int[2] { 0, -1 };
-                }
-                else if (e.KeyCode == Keys.Down)
-                {
-                    snake.dir = new int[2] { 0, 1 };
-                }
-            } else if(snake.dir[1] != 0)
-            {
-                if (e.KeyCode == Keys.Left)
-                {
-                    snake.dir = new int[2] { -1, 0 };
-                }
-                else if (e.KeyCode == Keys.Right)
-                {
-                    snake.dir = new int[2] { 1, 0 };
-                }
-            }
+            key = e.KeyCode;
         }
     }
 }
